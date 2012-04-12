@@ -8,19 +8,14 @@
 
 class Primitive
 {
-public:
-    Primitive(void);
-    ~Primitive(void);
-    
-    Material GetMaterial();
-    void SetMaterial(Material m);
+		
+public:      
+	Material* Material;
+	Vector3D Location;
+	Primitive(void){};
+    virtual Collision Intersection(Ray ray)=0;
 
-    Vector3D GetLocation();
-    void SetLocation(Vector3D l);
-
-    Collision Intersection(Ray ray);
 private:
-    Material _material;
-    Vector3D _location;
+	
 };
-#endif;
+#endif

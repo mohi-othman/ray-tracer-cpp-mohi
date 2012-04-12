@@ -6,13 +6,12 @@
 #include "math.h"
 
 #define Length(A)       (sqrtf(A.x*A.x+A.y*A.y+A.z*A.z))                                    //Length of a vector
-#define Normalize(A)    {float l=1/sqrtf(A.x*A.x+A.y*A.y+A.z*A.z);A.x*=l;A.y*=l;A.z*=l;}    //Normalize a vector
-#define Cross(A,B)      {Vector3D( A.y * B.z - A.z * B.y, A.z * B.x - A.x * B.z, A.x * B.y - A.y * B.x );}
+
 
 class Vector3D
 {
 public:
-    struct { float x, y, z; };
+	float x, y, z; 
 
 	//Zeroed out vector constructor
     Vector3D() : x(0.0f), y(0.0f), z(0.0f) {}; 
@@ -39,5 +38,16 @@ public:
     //Dot product
     friend float operator * ( const Vector3D& v1, Vector3D& v2 ) { return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; }	
 	
+	friend Vector3D operator ^ ( const Vector3D& A, Vector3D& B ) { return Vector3D( A.y * B.z - A.z * B.y, A.z * B.x - A.x * B.z, A.x * B.y - A.y * B.x ); }
+
+	//Normalize a vector
+	void Normalize()    
+	{
+		float l=1/sqrtf(x*x+y*y+z*z);
+		x*=l;
+		y*=l;
+		z*=l;		
+	}    
 };
+
 #endif

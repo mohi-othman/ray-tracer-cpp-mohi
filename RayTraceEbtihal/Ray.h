@@ -6,10 +6,9 @@
 class Ray
 {
 public:
-	struct {Vector3D Origin, Direction}
-
-	Ray(Vector 3D origin, Vector3D direction): Origin(origin), Direction(direction) {};
-    
+	struct {Vector3D Origin, Direction;};
+		
+    Ray( Vector3D origin, Vector3D direction) : Origin( origin ), Direction( direction ) {};	
 };
 
 #endif

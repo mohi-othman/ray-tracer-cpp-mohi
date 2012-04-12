@@ -83,27 +83,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="DiffuseShader.cpp" />
     <ClCompile Include="Entry.cpp" />
-    <ClCompile Include="Light.cpp" />
-    <ClCompile Include="Primitive.cpp" />
-    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="OrthographicCamera.cpp" />
+    <ClCompile Include="PhongMaterial.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="DiffuseShader.h" />
     <ClInclude Include="Entry.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="OrthographicCamera.h" />
+    <ClInclude Include="PhongMaterial.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Sphere.h" />
     <ClInclude Include="Vector3D.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>

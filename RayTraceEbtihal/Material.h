@@ -1,11 +1,22 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
+#include "Color.h"
+
 class Material
 {
 public:
-    Material(void);
-    ~Material(void);
+	struct {
+	float ReflectionCoeff;
+	float DiffuseCoeff;
+	float SpecularCoeff;
+	float Exponent;
+	float RefractionIndex;
+	Color DiffuseColor;
+	Color SpecularColor;
+	Color TransparentColor;
+	Color ReflectiveColor;
+	};
 };
 
 #endif

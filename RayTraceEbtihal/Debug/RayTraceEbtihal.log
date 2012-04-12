@@ -1,35 +1,15 @@
-﻿Build started 4/9/2012 7:15:22 PM.
-     1>Project "C:\Users\Mohi\Documents\Visual Studio 2010\Projects\RayTraceMohi_CSharp-clone\RayTraceEbtihal\RayTraceEbtihal.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
-         Touching "Debug\RayTraceEbtihal.unsuccessfulbuild".
-       ClCompile:
-         e:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Primitive.cpp
-         Primitive.cpp
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\ray.h(9): error C2143: syntax error : missing ';' before '}'
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\ray.h(11): error C2380: type(s) preceding 'Ray' (constructor with return type, or illegal redefinition of current class-name?)
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\ray.h(11): error C2059: syntax error : '<L_TYPE_raw>'
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\ray.h(11): error C2059: syntax error : 'bad suffix on number'
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\ray.h(11): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(14): error C2143: syntax error : missing ';' before '*'
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(19): error C2380: type(s) preceding 'Collision' (constructor with return type, or illegal redefinition of current class-name?)
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(19): error C2059: syntax error : '<L_TYPE_raw>'
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(19): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(20): error C2061: syntax error : identifier 'Primitive'
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(21): error C2065: 'isCollision' : undeclared identifier
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(21): error C2065: 'hitObject' : undeclared identifier
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(21): error C2065: 'distance' : undeclared identifier
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(21): error C2065: 'distance' : undeclared identifier
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(21): error C2065: 'normal' : undeclared identifier
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(21): error C2614: 'Collision' : illegal member initialization: 'Normal' is not a base or member
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(21): error C2614: 'Collision' : illegal member initialization: 'Distance' is not a base or member
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(21): error C2614: 'Collision' : illegal member initialization: 'Distance' is not a base or member
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(21): error C2614: 'Collision' : illegal member initialization: 'HitObject' is not a base or member
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(21): error C2614: 'Collision' : illegal member initialization: 'IsInsidePrimitive' is not a base or member
-     1>c:\users\mohi\documents\visual studio 2010\projects\raytracemohi_csharp-clone\raytraceebtihal\collision.h(21): error C2614: 'Collision' : illegal member initialization: 'IsCollision' is not a base or member
-     1>Done Building Project "C:\Users\Mohi\Documents\Visual Studio 2010\Projects\RayTraceMohi_CSharp-clone\RayTraceEbtihal\RayTraceEbtihal.vcxproj" (build target(s)) -- FAILED.
-
-Build FAILED.
-
-Time Elapsed 00:00:00.12
+﻿  Entry.cpp
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\sphere.h(16): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(29): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(29): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(29): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(29): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(29): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(32): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(32): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(32): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(42): warning C4305: 'argument' : truncation from 'double' to 'float'
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Scene.cpp
+  RayTraceEbtihal.vcxproj -> C:\Users\muhyedeno\Documents\RayTracerMohi-CPP\Debug\RayTraceEbtihal.exe
