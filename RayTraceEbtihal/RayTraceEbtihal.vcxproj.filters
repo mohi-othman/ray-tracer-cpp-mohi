@@ -111,7 +111,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\..\Graphics\install\lib\libpng15.lib" />
-  </ItemGroup>
 </Project>

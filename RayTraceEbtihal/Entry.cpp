@@ -1,5 +1,7 @@
 #define png_infopp_NULL (png_infopp)NULL
 #define int_p_NULL (int*)NULL
+#include <boost/gil/gil_all.hpp>
+#include <boost/gil/extension/io/png_dynamic_io.hpp>
 
 #include <iostream>
 #include "Entry.h"
@@ -14,9 +16,10 @@
 #include "Scene.h"
 #include <vector>
 #include <string>
-#include <Magick++.h>
+
 
 using namespace std;
+using namespace boost::gil;
 
 
 Entry::Entry(void)
@@ -29,9 +32,7 @@ Entry::~Entry(void)
 }
 
 int main(int argc, char *argv[]) 
-{
-	Magick::InitializeMagick(*argv);
-
+{	
 	Sphere s = Sphere(Vector3D(0,0,0), 3.2);
 	PhongMaterial m = PhongMaterial(Color(1,1,1), Color(1,1,1), 20, Color(0,0,0), Color(.2,.2,.2), 0);
 	s.Material = &m;
@@ -46,13 +47,15 @@ int main(int argc, char *argv[])
 
 	OrthographicCamera c = OrthographicCamera(Vector3D(0,0,-5), Vector3D(0,0,1), Vector3D(0,1,0));
 	DiffuseShader sh = DiffuseShader();
-	int X = 80;
-	int Y = 60;
+	int X = 800;
+	int Y = 600;
 
-	Scene scene = Scene(X, Y, .13, &c, Color(0,0,0), objects, lights, &sh, Color(0,0,0));
+	Scene scene = Scene(X, Y, 8/X, &c, Color(0,0,0), objects, lights, &sh, Color(0,0,0));
 
 	View v = scene.Render();	
 
+	rgb8_image_t img(X,Y);
+	
 	for(int x = 0; x<X; x++)
 	{
 		for(int y = 0; y<Y; y++)
@@ -66,12 +69,14 @@ int main(int argc, char *argv[])
 			else if (dd>.50)
 				ch="*";
 			else if (dd>.05)
-				ch=".";
+				ch=".";	
 			else
 				ch=" ";
 			cout << ch;
 		}
 		cout << "\n";
+		
+		
 
 	}
 }
