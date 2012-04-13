@@ -15,7 +15,7 @@ public:
 	OrthographicCamera(Vector3D location, Vector3D direction, Vector3D up) : CameraLocation(location), Direction(direction), Up(up) {};	
 	Ray OrthographicCamera::GenerateRay(Vector3D target);	
 	View GetView(int width, int height, float pixelSize);
-	Vector3D TranslatePoint(int x, int y, int width, int height, double pixelSize);	
+	Vector3D TranslatePoint(int x, int y, int width, int height, float pixelSize);	
 };
 
 

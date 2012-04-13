@@ -16,7 +16,7 @@ View OrthographicCamera::GetView(int width, int height, float pixelSize)
     return View(width, height, p1, p2, p3, p4);
 }
 
-Vector3D OrthographicCamera::TranslatePoint(int x, int y, int width, int height, double pixelSize)
+Vector3D OrthographicCamera::TranslatePoint(int x, int y, int width, int height, float pixelSize)
 {		
    return CameraLocation +
                     (((Up ^ Direction) * (x + (-0.5 * width)) * pixelSize)) -

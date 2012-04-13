@@ -5,13 +5,11 @@
 View Scene::Render(){
 	View result = SceneCamera->GetView(SizeX, SizeY, PixelSize);
 	
-	Sphere x = Sphere(Vector3D(0,0,0),10);
-
     int level = 0;
-
-    for (int x = 0; x < SizeX; x++)
+	int xy = 0;
+    for (int y = 0; y < SizeY; y++)
     {
-        for (int y = 0; y < SizeY; y++)
+        for (int x = 0; x < SizeX; x++)
         {                   
 			Vector3D targetPixel = result.GetPixel(x, y).realCoordinate;
 
@@ -19,8 +17,9 @@ View Scene::Render(){
 
             Point point = RayTrace(ray, 1, level);
 
-            result.Pixels[(int)x, (int)y] = point;
+            result.Pixels[xy] = point;
 
+			xy++;
         }
     }
 
@@ -50,10 +49,10 @@ Point Scene::RayTrace(Ray ray, float refractionIndex, int level)
             //Check if object in shadows
             Collision shadowCollision = Trace(lightRay);
 
-            if (!shadowCollision.IsCollision)
-            {
+            /*if (!shadowCollision.IsCollision)
+            {*/
 				color += SceneShader->GetColor(collision.HitObject, light, ray.Direction, lightRay.Direction, normal);                        
-            }
+            /*}*/
         }
 
         //Reflection

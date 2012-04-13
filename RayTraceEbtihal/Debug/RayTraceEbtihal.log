@@ -1,15 +1,301 @@
-﻿  Entry.cpp
-c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\sphere.h(16): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(29): warning C4305: 'argument' : truncation from 'double' to 'float'
-c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(29): warning C4305: 'argument' : truncation from 'double' to 'float'
-c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(29): warning C4305: 'argument' : truncation from 'double' to 'float'
-c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(29): warning C4305: 'argument' : truncation from 'double' to 'float'
-c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(29): warning C4305: 'argument' : truncation from 'double' to 'float'
-c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(32): warning C4305: 'argument' : truncation from 'double' to 'float'
-c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(32): warning C4305: 'argument' : truncation from 'double' to 'float'
-c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(32): warning C4305: 'argument' : truncation from 'double' to 'float'
-c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(42): warning C4305: 'argument' : truncation from 'double' to 'float'
-  Generating Code...
-  Skipping... (no relevant changes detected)
+﻿  View.cpp
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\view.cpp(25): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+  Sphere.cpp
   Scene.cpp
-  RayTraceEbtihal.vcxproj -> C:\Users\muhyedeno\Documents\RayTracerMohi-CPP\Debug\RayTraceEbtihal.exe
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\scene.cpp(93): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\scene.cpp(104): warning C4305: 'argument' : truncation from 'double' to 'float'
+  PointLight.cpp
+  PhongMaterial.cpp
+  OrthographicCamera.cpp
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\orthographiccamera.cpp(22): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\orthographiccamera.cpp(23): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+  Entry.cpp
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(456): warning C4251: 'Magick::DrawableBezier::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::DrawableBezier'
+          with
+          [
+              _Ty=Magick::Coordinate
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(498): warning C4251: 'Magick::DrawablePushClipPath::_id' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::DrawablePushClipPath'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(526): warning C4251: 'Magick::DrawableClipPath::_id' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::DrawableClipPath'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(959): warning C4251: 'Magick::DrawableFont::_font' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::DrawableFont'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(960): warning C4251: 'Magick::DrawableFont::_family' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::DrawableFont'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(1128): warning C4251: 'Magick::DrawablePath::_path' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::DrawablePath'
+          with
+          [
+              _Ty=Magick::VPath
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(1217): warning C4251: 'Magick::DrawablePolygon::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::DrawablePolygon'
+          with
+          [
+              _Ty=Magick::Coordinate
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(1237): warning C4251: 'Magick::DrawablePolyline::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::DrawablePolyline'
+          with
+          [
+              _Ty=Magick::Coordinate
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(1321): warning C4251: 'Magick::DrawablePushPattern::_id' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::DrawablePushPattern'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(1923): warning C4251: 'Magick::DrawableText::_text' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::DrawableText'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(1924): warning C4251: 'Magick::DrawableText::_encoding' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::DrawableText'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2255): warning C4251: 'Magick::PathArcAbs::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathArcAbs'
+          with
+          [
+              _Ty=Magick::PathArcArgs
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2277): warning C4251: 'Magick::PathArcRel::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathArcRel'
+          with
+          [
+              _Ty=Magick::PathArcArgs
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2428): warning C4251: 'Magick::PathCurvetoAbs::_args' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathCurvetoAbs'
+          with
+          [
+              _Ty=Magick::PathCurvetoArgs
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2451): warning C4251: 'Magick::PathCurvetoRel::_args' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathCurvetoRel'
+          with
+          [
+              _Ty=Magick::PathCurvetoArgs
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2475): warning C4251: 'Magick::PathSmoothCurvetoAbs::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathSmoothCurvetoAbs'
+          with
+          [
+              _Ty=Magick::Coordinate
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2500): warning C4251: 'Magick::PathSmoothCurvetoRel::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathSmoothCurvetoRel'
+          with
+          [
+              _Ty=Magick::Coordinate
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2609): warning C4251: 'Magick::PathQuadraticCurvetoAbs::_args' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathQuadraticCurvetoAbs'
+          with
+          [
+              _Ty=Magick::PathQuadraticCurvetoArgs
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2633): warning C4251: 'Magick::PathQuadraticCurvetoRel::_args' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathQuadraticCurvetoRel'
+          with
+          [
+              _Ty=Magick::PathQuadraticCurvetoArgs
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2657): warning C4251: 'Magick::PathSmoothQuadraticCurvetoAbs::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathSmoothQuadraticCurvetoAbs'
+          with
+          [
+              _Ty=Magick::Coordinate
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2681): warning C4251: 'Magick::PathSmoothQuadraticCurvetoRel::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathSmoothQuadraticCurvetoRel'
+          with
+          [
+              _Ty=Magick::Coordinate
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2709): warning C4251: 'Magick::PathLinetoAbs::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathLinetoAbs'
+          with
+          [
+              _Ty=Magick::Coordinate
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2733): warning C4251: 'Magick::PathLinetoRel::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathLinetoRel'
+          with
+          [
+              _Ty=Magick::Coordinate
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2875): warning C4251: 'Magick::PathMovetoAbs::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathMovetoAbs'
+          with
+          [
+              _Ty=Magick::Coordinate
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\drawable.h(2899): warning C4251: 'Magick::PathMovetoRel::_coordinates' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::PathMovetoRel'
+          with
+          [
+              _Ty=Magick::Coordinate
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\exception.h(31): warning C4251: 'Magick::Exception::_what' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::Exception'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\coderinfo.h(65): warning C4251: 'Magick::CoderInfo::_name' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::CoderInfo'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\coderinfo.h(66): warning C4251: 'Magick::CoderInfo::_description' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::CoderInfo'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\montage.h(90): warning C4251: 'Magick::Montage::_fileName' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::Montage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\montage.h(92): warning C4251: 'Magick::Montage::_font' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::Montage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\montage.h(95): warning C4251: 'Magick::Montage::_label' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::Montage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\montage.h(99): warning C4251: 'Magick::Montage::_texture' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::Montage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\montage.h(101): warning C4251: 'Magick::Montage::_title' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::Montage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(121): warning C4251: 'Magick::annotateImage::_text' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::annotateImage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(223): warning C4251: 'Magick::cdlImage::_cdl' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::cdlImage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(262): warning C4251: 'Magick::commentImage::_comment' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::commentImage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(349): warning C4251: 'Magick::drawImage::_drawableList' : class 'std::list<_Ty>' needs to have dll-interface to be used by clients of class 'Magick::drawImage'
+          with
+          [
+              _Ty=Magick::Drawable
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(602): warning C4251: 'Magick::labelImage::_label' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::labelImage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(1201): warning C4251: 'Magick::backgroundTextureImage::_backgroundTexture' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::backgroundTextureImage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(1376): warning C4251: 'Magick::fileNameImage::_fileName' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::fileNameImage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(1400): warning C4251: 'Magick::fontImage::_font' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::fontImage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(1460): warning C4251: 'Magick::magickImage::_magick' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::magickImage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(1692): warning C4251: 'Magick::tileNameImage::_tileName' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::tileNameImage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(1729): warning C4251: 'Magick::viewImage::_view' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::viewImage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\downloads\graphicsmagick-1.3.14-windows-source\graphicsmagick-1.3.14\magick++\lib\magick++\stl.h(1742): warning C4251: 'Magick::x11DisplayImage::_display' : class 'std::basic_string<_Elem,_Traits,_Ax>' needs to have dll-interface to be used by clients of class 'Magick::x11DisplayImage'
+          with
+          [
+              _Elem=char,
+              _Traits=std::char_traits<char>,
+              _Ax=std::allocator<char>
+          ]
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(35): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(36): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(36): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(36): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(39): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(39): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(39): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\users\muhyedeno\documents\raytracermohi-cpp\raytraceebtihal\entry.cpp(52): warning C4305: 'argument' : truncation from 'double' to 'float'
+  DiffuseShader.cpp
+  Generating Code...
+Entry.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) void __cdecl Magick::InitializeMagick(char const *)" (__imp_?InitializeMagick@Magick@@YAXPBD@Z) referenced in function _main
+C:\Users\muhyedeno\Documents\RayTracerMohi-CPP\Debug\RayTraceEbtihal.exe : fatal error LNK1120: 1 unresolved externals

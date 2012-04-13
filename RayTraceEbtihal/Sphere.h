@@ -10,7 +10,7 @@ class Sphere :
 public:	
 	float Radius;
 	
-	Sphere(Vector3D Center, double size) 
+	Sphere(Vector3D Center, float size) 
 	{
 		Location = Center;
 		Radius = size;
