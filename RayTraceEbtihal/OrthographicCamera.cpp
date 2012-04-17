@@ -5,9 +5,10 @@ Ray OrthographicCamera::GenerateRay(Vector3D target)
 	 return Ray(target, Direction);
 }
 
+
+//Construct view
 View OrthographicCamera::GetView(int width, int height, float pixelSize)
-{
-	
+{	
 	Vector3D p1 = TranslatePoint(0, 0, width, height, pixelSize);
     Vector3D p2 = TranslatePoint(width - 1, 0, width, height, pixelSize);
     Vector3D p3 = TranslatePoint(0, height - 1, width, height, pixelSize);

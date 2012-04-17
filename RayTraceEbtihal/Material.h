@@ -1,3 +1,5 @@
+// Base material class for all material types.
+
 #ifndef MATERIAL_H
 #define MATERIAL_H
 

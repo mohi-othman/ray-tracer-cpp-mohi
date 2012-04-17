@@ -1,6 +1,6 @@
 #include "DiffuseShader.h"
 
-
+//Diffuse Shading
 Color DiffuseShader::GetColor(Primitive* HitObject, Light* LightSource, Vector3D ViewDirection, Vector3D LightDirection, Vector3D Normal)
 {
 	Vector3D L = LightDirection;

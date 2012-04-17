@@ -1,3 +1,4 @@
+//Class for diffuse shading, dervied from the base Shader class
 #ifndef DIFFUSESHADER_H
 #define DIFFUSESHADER_H
 

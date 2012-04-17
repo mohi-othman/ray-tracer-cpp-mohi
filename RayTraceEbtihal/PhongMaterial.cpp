@@ -5,13 +5,13 @@ PhongMaterial::PhongMaterial(Color diffuseColor, Color specularColor, float expo
 {
 	PhongMaterial::DiffuseColor = diffuseColor;
 	PhongMaterial::SpecularColor = specularColor;
-	PhongMaterial::Exponent=exponent;
-	PhongMaterial::TransparentColor=transparentColor;
-	PhongMaterial::ReflectiveColor=reflectiveColor;
-	PhongMaterial::RefractionIndex=refractionIndex;
+	PhongMaterial::Exponent = exponent;
+	PhongMaterial::TransparentColor = transparentColor;
+	PhongMaterial::ReflectiveColor = reflectiveColor;
+	PhongMaterial::RefractionIndex = refractionIndex;
 	
 	PhongMaterial::DiffuseCoeff = 1;
-	PhongMaterial::ReflectionCoeff=0;		
+	PhongMaterial::ReflectionCoeff = 0;		
 }
 
 

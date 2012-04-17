@@ -1,3 +1,5 @@
+//Base 3D primitive class.
+
 #ifndef PRIMITIVE_H
 #define PRIMITIVE_H
 
@@ -10,12 +12,12 @@ class Primitive
 {
 		
 public:      
-	Material* Material;
-	Vector3D Location;
-	Primitive(void){};
-    virtual Collision Intersection(Ray ray)=0;
+	Material* Material;	//Material of the object
+	Vector3D Location;	//Location of the center of the object
+	Primitive(void){};	//Default constructor
 
-private:
+	//Function to test for collision with a ray
+    virtual Collision Intersection(Ray ray)=0;
 	
 };
 #endif

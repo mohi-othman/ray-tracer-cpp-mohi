@@ -1,3 +1,5 @@
+//Class for point light, dervied from the base Light class
+
 #ifndef POINTLIGHT_H
 #define POINTLIGHT_H
 

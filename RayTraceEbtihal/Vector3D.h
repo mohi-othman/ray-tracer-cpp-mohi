@@ -6,7 +6,7 @@
 #include "math.h"
 
 #define Length(A)       (sqrtf(A.x*A.x+A.y*A.y+A.z*A.z))                                    //Length of a vector
-
+#define NULL_VECTOR		Vector3D()
 
 class Vector3D
 {
@@ -38,6 +38,7 @@ public:
     //Dot product
     friend float operator * ( const Vector3D& v1, Vector3D& v2 ) { return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; }	
 	
+	//Cross Product
 	friend Vector3D operator ^ ( const Vector3D& A, Vector3D& B ) { return Vector3D( A.y * B.z - A.z * B.y, A.z * B.x - A.x * B.z, A.x * B.y - A.y * B.x ); }
 
 	//Normalize a vector

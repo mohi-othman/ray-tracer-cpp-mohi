@@ -43,8 +43,10 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Program Files %28x86%29\boost\boost_1_47;C:\lpng1510;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\lpng1510;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\libpng\libpng;C:\Program Files %28x86%29\boost\boost_1_47;C:\zlib\zlib-1.2.6;E:\Program Files %28x86%29\Microsoft Visual Studio 10.0\VC\include</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\libpng\Release;C:\zlib\zlib-1.2.6;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\libpng\libpng;C:\Program Files %28x86%29\boost\boost_1_47;C:\zlib\zlib-1.2.6</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\libpng\Release;C:\zlib\zlib-1.2.6;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -63,6 +65,7 @@
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalDependencies>libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\libpng\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -83,35 +86,56 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>C:\libpng\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BoundingBox.cpp" />
     <ClCompile Include="DiffuseShader.cpp" />
+    <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="Entry.cpp" />
     <ClCompile Include="OrthographicCamera.cpp" />
+    <ClCompile Include="PerspectiveCamera.cpp" />
     <ClCompile Include="PhongMaterial.cpp" />
+    <ClCompile Include="PhongShader.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="PNGBuilder.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SimplePerspectiveCamera.cpp" />
+    <ClCompile Include="SpecularShader.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="TriangleMesh.cpp" />
     <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DiffuseShader.h" />
+    <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="Entry.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="OrthographicCamera.h" />
+    <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="PhongMaterial.h" />
+    <ClInclude Include="PhongShader.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="PNGBuilder.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="SimplePerspectiveCamera.h" />
+    <ClInclude Include="SpecularShader.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Triangle.h" />
+    <ClInclude Include="TriangleMesh.h" />
     <ClInclude Include="Vector3D.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>

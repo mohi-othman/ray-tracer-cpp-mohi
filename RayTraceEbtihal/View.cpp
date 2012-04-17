@@ -38,6 +38,3 @@ Point View::GetPixel(int x, int y)
 	return Pixels[y*Width + x];
 }; 
 
-View::~View(void)
-{
-}

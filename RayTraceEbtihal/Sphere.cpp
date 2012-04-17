@@ -1,6 +1,8 @@
 #include "Primitive.h"
 #include "Sphere.h"
 
+//Formula from "Ray Tracing from the Ground Up"
+
 Collision Sphere::Intersection(Ray ray)
 {
 	float A = ray.Direction * ray.Direction;
@@ -49,6 +51,8 @@ Vector3D Sphere::GetNormal(Vector3D point)
     float temp = n * n;
     temp = 1 / sqrtf(temp);
     n = temp * n;
+
+	n.Normalize();
 
     return n;
 }
