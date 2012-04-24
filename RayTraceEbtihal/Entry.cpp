@@ -33,9 +33,52 @@ Entry::~Entry(void)
     
 }
 
-int main(int argc, char *argv[]) 
-{
+int main( int argc, char **argv ){
+    #ifdef WIN32
+        _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+    #endif
+	string pathStr;
+	gProgramName = argv[0];
+	boost::thread * drawing = NULL;
 
+	parseCommandLine( argc, argv );
+	argc -= optind;
+	argv += optind;
+	if( gTheScene->hasInputSceneFilePath( ) &&
+			gTheScene->hasOutputFilePath( ) &&
+			gTheScene->hasDepthFilePath( ) ){
+        cout << "Parsing" << endl;
+		gTheScene->parse( );
+
+        if(gVerbose)
+        {
+		    cout << *gTheScene << endl;
+        }	
+
+        cout << "Tracing" << endl;
+		if(gLiveView)
+		{
+			myTracer.setOpenGL(argc,argv);
+		}
+        myTracer.Trace(gTheScene,&drawing);
+
+        cout << "Saving scene to files" << endl;
+        gTheScene->drawScene();
+
+		if(drawing != NULL)
+		{
+			drawing->join();
+			delete drawing;
+		}
+	}else{
+		usage( "You specify an input scene file, an output file and a depth file." );
+	}
+	if(gTheScene)
+	{
+		delete gTheScene;
+	}
+
+	return( 0 );
 }
 //int main(int argc, char *argv[]) 
 //{	

@@ -11,7 +11,8 @@ PhongMaterial::PhongMaterial(Color diffuseColor, Color specularColor, float expo
 	PhongMaterial::RefractionIndex = refractionIndex;
 	
 	PhongMaterial::DiffuseCoeff = 1;
-	PhongMaterial::ReflectionCoeff = 0;		
+	PhongMaterial::ReflectionCoeff = 0;			
+	PhongMaterial::SpecularCoeff = 1;
 }
 
 

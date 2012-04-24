@@ -26,9 +26,12 @@ public:
 	Color BackgroundColor;					//Background color of the scene
 
 	//Constructor
+	Scene() {};
 	Scene(int sizeX, int sizeY, float pixelSize, Camera* sceneCamera, Color ambientLight, std::vector<Primitive*> sceneObjects, std::vector<Light*> sceneLights, Shader* sceneShader, Color backgroundColor):
 		SizeX(sizeX), SizeY(sizeY), PixelSize(pixelSize), SceneCamera(sceneCamera), AmbientLight(ambientLight), SceneObjects(sceneObjects), SceneLights(sceneLights), SceneShader(sceneShader), BackgroundColor(backgroundColor){};
-	
+	~Scene()
+	{
+	}
 	//Renders the scene to a view object.
 	View Render();	
 
