@@ -7,6 +7,7 @@
 using namespace std;
 using namespace boost::gil;
 
+//Generate PNG image of the rendered scene
 void PNGBuilder::GeneratePNG(View v, const char *filename)
 {
 	int width = v.Width;
@@ -31,13 +32,14 @@ void PNGBuilder::GeneratePNG(View v, const char *filename)
 	png_write_view(filename, const_view(img));
 }
 
-
+//Generate grayscale depth image of the rendered scene
 void PNGBuilder::GenerateDepth(View v, const char *filename)
 {
+    //Get minimum and maximum depth
 	int width = v.Width;
 	int height = v.Height;	
 	float maxDepth = 0;
-	float maxPossbleDepth = 30;
+	float minDepth = INFINITY;
 
 	for(int y = 0; y<height; y++)
 	{
@@ -45,10 +47,17 @@ void PNGBuilder::GenerateDepth(View v, const char *filename)
 		{			
 			float depth = v.GetPixel(x,y).depth;
 
-			if(depth < maxPossbleDepth)
+			if(depth < INFINITY)
+            {
 				maxDepth = Max(depth, maxDepth);
+                minDepth = Min(depth, minDepth);
+            }
 		}
 	}
+    
+    //create buffer zone around depths for better looking image
+    minDepth--;
+    maxDepth++;
 
 	rgb8_image_t img(width, height);       
 	
@@ -58,8 +67,8 @@ void PNGBuilder::GenerateDepth(View v, const char *filename)
 		{			
 			float clr;
 			float depth = v.GetPixel(x,y).depth;
-			if(depth < maxPossbleDepth)
-				clr = (1 - (depth / maxDepth)) * 256;
+			if(depth < INFINITY)
+				clr = (1 - ((depth-minDepth) / (maxDepth-minDepth))) * 256;
 			else
 				clr = 0;
 			

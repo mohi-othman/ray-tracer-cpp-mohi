@@ -125,7 +125,7 @@ FaceList* readPlyModel( const char* filename ){
   for (i = 0; i < nv; i++) {
     inputfile.getline(buffer, sizeof(buffer), '\n');
     sscanf(buffer,"%f %f %f", &v[0], &v[1], &v[2]);
-    fl->Vertices[i] = Vector3D(v[0],v[1],v[2]);
+    fl->Vertices.push_back(Vector3D(v[0],v[1],v[2]));
 	
   }
 
@@ -137,9 +137,12 @@ FaceList* readPlyModel( const char* filename ){
       fprintf(stderr, "Error: not a triangular face.\n");
       exit(1);
     }
-    fl->Faces[i].push_back(f[0]);
-	fl->Faces[i].push_back(f[1]);
-	fl->Faces[i].push_back(f[2]);
+    vector<int> face;
+    face.clear();
+    face.push_back(f[0]);
+    face.push_back(f[1]);
+    face.push_back(f[2]);
+    fl->Faces.push_back(face);    
   }
   inputfile.close( );
   

@@ -87,8 +87,10 @@ int main( int argc, char **argv ){
 	if( gTheScene->hasInputSceneFilePath( ) &&
 			gTheScene->hasOutputFilePath( ) &&
 			gTheScene->hasDepthFilePath( ) ){
+        unsigned t0 = clock(), t1;
 		gTheScene->parse( );	
-		
+        t1 = clock() - t0;
+		cout << "Execution time: " << t1 / CLOCKS_PER_SEC << " seconds\n";
 
 			
 	}else{

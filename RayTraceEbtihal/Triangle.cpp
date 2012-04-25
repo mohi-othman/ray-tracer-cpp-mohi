@@ -11,6 +11,7 @@ Triangle::Triangle(Vector3D point0, Vector3D point1, Vector3D point2)
     _u = Point1 - Point0;
     _v = Point2 - Point0;
     _normal = (_u^_v);   
+    //_normal = (_v^_u);
 	_normal.Normalize();
 }
 
@@ -55,14 +56,14 @@ Collision Triangle::Intersection(Ray ray)
     float s, t;
     s = (uv * wv - vv * wu) / D;
     if (s < 0.0 || s > 1.0)        // I is outside T
-        return new Collision(false);
+        return Collision(false);
     t = (uv * wu - uu * wv) / D;
     if (t < 0.0 || (s + t) > 1.0)  // I is outside T
-        return new Collision(false);
+        return Collision(false);
 
     float dist = Length(ray.Origin, hitPoint);
 
-    return new Collision(true, false, this, dist, _normal, hitPoint);                     // I is in T
+    return Collision(true, false, this, dist, _normal, hitPoint);                     // I is in T
 }
 
 Vector3D Triangle::GetNormal()

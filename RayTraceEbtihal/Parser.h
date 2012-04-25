@@ -29,6 +29,7 @@
 
 #include "Shader.h"
 #include "PhongShader.h"
+#include "PhongIllumination.h"
 
 #include "Material.h"
 #include "PhongMaterial.h"

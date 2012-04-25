@@ -44,10 +44,13 @@ public:
 	//Normalize a vector
 	void Normalize()    
 	{
-		float l=1/sqrtf(x*x+y*y+z*z);
-		x*=l;
-		y*=l;
-		z*=l;		
+        if ((x*x+y*y+z*z)!=0)
+        {
+		    float l=1/sqrtf(x*x+y*y+z*z);
+		    x*=l;
+		    y*=l;
+		    z*=l;		
+        }
 	}    
 };
 

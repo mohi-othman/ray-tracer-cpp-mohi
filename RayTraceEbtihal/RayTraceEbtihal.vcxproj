@@ -43,7 +43,7 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\libpng\libpng;C:\Program Files %28x86%29\boost\boost_1_47;C:\zlib\zlib-1.2.6;E:\Program Files %28x86%29\Microsoft Visual Studio 10.0\VC\include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\libpng\libpng;C:\Program Files %28x86%29\boost\boost_1_47;C:\zlib\zlib-1.2.6;$(VCInstallDir)include</IncludePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\libpng\Release;C:\zlib\zlib-1.2.6;$(LibraryPath)</LibraryPath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\libpng\libpng;C:\Program Files %28x86%29\boost\boost_1_47;C:\zlib\zlib-1.2.6</IncludePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\libpng\Release;C:\zlib\zlib-1.2.6;$(LibraryPath)</LibraryPath>
@@ -97,6 +97,7 @@
     <ClCompile Include="OrthographicCamera.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="PerspectiveCamera.cpp" />
+    <ClCompile Include="PhongIllumination.cpp" />
     <ClCompile Include="PhongMaterial.cpp" />
     <ClCompile Include="PhongShader.cpp" />
     <ClCompile Include="Plane.cpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="OrthographicCamera.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="PerspectiveCamera.h" />
+    <ClInclude Include="PhongIllumination.h" />
     <ClInclude Include="PhongMaterial.h" />
     <ClInclude Include="PhongShader.h" />
     <ClInclude Include="Plane.h" />

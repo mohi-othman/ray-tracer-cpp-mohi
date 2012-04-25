@@ -108,6 +108,9 @@
     <ClCompile Include="PlyModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PhongIllumination.cpp">
+      <Filter>Source Files\Shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collision.h">
@@ -199,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="PlyModel.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhongIllumination.h">
+      <Filter>Header Files\Shaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -13,7 +13,7 @@ Parser::Parser( string inputFilename, string outputFilename, string depthFilenam
 	j(0)
 {
 	myNumberOfMaterials = -1;	
-	myScene.SceneShader = new PhongShader();
+	myScene.SceneShader = new PhongIllumination();// PhongShader();
 	myScene.AmbientLight = Color();
 }
 
@@ -451,7 +451,7 @@ void Parser::parseSphere(int materialIndex ){
 void Parser::parseModel(int materialIndex ){
     string var;
     FaceList * myFacelist;
-    TriangleMesh * myModel;
+    
     checkToken("TriangleMesh", "Mesh");
     nextToken();
     checkToken("{", "Mesh");
@@ -464,12 +464,12 @@ void Parser::parseModel(int materialIndex ){
 
     myFacelist = readPlyModel(var.c_str());
     
-	myModel->Faces = *myFacelist;
-	myModel->Material = myMaterials[materialIndex];
+    TriangleMesh * myModel = new TriangleMesh(*myFacelist);	
+    myModel->Material = myMaterials[materialIndex];
 
 	myGroup.push_back(myModel);
     
-    delete myFacelist;
+    //delete myFacelist;
 }
 
 void Parser::parseViewPlane( ){
@@ -544,8 +544,7 @@ void Parser::parsePointLight()
         pos[i] = parseFloat();
     }
 	position = Vector3D(pos[0],pos[1],pos[2]);
-	position.Normalize();
-
+	
     nextToken();
     checkToken("color","Light");
     for(int i = 0; i < 3; i++)
@@ -590,7 +589,6 @@ void Parser::parseDirectionalLight()
         pos[i] = parseFloat();
     }
 	position = Vector3D(pos[0],pos[1],pos[2]);
-	position.Normalize();
 	nextToken();
 
 	checkToken("direction","Light");

@@ -56,12 +56,14 @@ Collision TriangleMesh::Intersection(Ray ray)
             }
         }
 
-		if (!hit.IsCollision)
-            return new Collision(true, false, this, hit.Distance, hit.Normal, hit.HitPoint);
+		if (hit.IsCollision)
+        {            
+            return Collision(true, false, this, hit.Distance, hit.Normal, hit.HitPoint); 
+        }
         else
-            return new Collision(false);
+            return Collision(false);
     }
-    return new Collision(false);
+    return Collision(false);
 }
 
 
