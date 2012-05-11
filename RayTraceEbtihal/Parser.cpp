@@ -2,102 +2,129 @@
 
 #include "Parser.h"
 
-Parser::Parser( string inputFilename, string outputFilename, string depthFilename ) :
-	myInputSceneFile( inputFilename ),
-	myOutputFile( outputFilename ),
-	myDepthFile( depthFilename ),	
-	lineNumber(0),
-	tokenCount(0),
-	length(0),
-	i(0),
-	j(0)
+Parser::Parser( string inputFilename, string outputFilename, string depthFilename, bool animate, float timeframe, int fps) :
+myInputSceneFile( inputFilename ),
+    myOutputFile( outputFilename ),
+    myDepthFile( depthFilename ),	
+    animated(animate),
+    timeFrame(timeframe),
+    FPS(fps),
+    lineNumber(0),
+    tokenCount(0),
+    length(0),
+    i(0),
+    j(0)
 {
-	myNumberOfMaterials = -1;	
-	myScene.SceneShader = new PhongIllumination();// PhongShader();
-	myScene.AmbientLight = Color();
+    myNumberOfMaterials = -1;	
+    myScene.SceneShader = new PhongShader();
+    myScene.AmbientLight = Color();    
 }
 
 bool Parser::parse( ){	
-	bool ret = true;
-	lineNumber = 0;
-	tokenCount = 0;
-	
-	inputFileStream.open( myInputSceneFile.c_str( ), ios::in );
-	if( inputFileStream.fail( ) ){
-		cerr << "Error opening \"" << myInputSceneFile << "\" for reading." << endl;
-		exit( 1 );
-	}
-	parseCamera( );
+    bool ret = true;
+    lineNumber = 0;
+    tokenCount = 0;
+
+    inputFileStream.open( myInputSceneFile.c_str( ), ios::in );
+    if( inputFileStream.fail( ) ){
+        cerr << "Error opening \"" << myInputSceneFile << "\" for reading." << endl;
+        exit( 1 );
+    }
+    parseCamera( );
     parseViewPlane( );
     parseLights( );
-	parseBackground( );
-	parseMaterials( );
-	parseGroup( );
+    parseBackground( );
+    parseMaterials( );
+    parseGroup( );
+    parseTransformations( );
 
-	myScene.SceneLights = myLights;
-	myScene.SceneObjects = myGroup;
-				 
-	inputFileStream.close();
-	
-	View v = myScene.Render();
+    myScene.SceneLights = myLights;
+    myScene.SceneObjects = myGroup;
 
-	PNGBuilder png;
+    inputFileStream.close();
 
-	png.GeneratePNG(v, myOutputFile.c_str());
-	png.GenerateDepth(v, myDepthFile.c_str());
-	return( ret );
+    PNGBuilder png;
+
+    if(animated)
+    {
+        vector<View> result = myScene.Animate(timeFrame,FPS);
+        
+        std::vector<View>::iterator index = result.begin();
+        std::vector<View>::iterator end = result.end();
+        int count = 0;
+        for(; index != end; index++)
+        {			
+            View v = (*index);
+            char name [50];
+            sprintf(name, "c:\\test\\cc%03d.png", count); 
+            png.GeneratePNG(v, name);
+            count++;
+        }
+    }
+    else
+    {
+        View v = myScene.Render();
+        
+        png.GeneratePNG(v, myOutputFile.c_str());
+
+        if( hasDepthFilePath())
+        {
+            png.GenerateDepth(v, myDepthFile.c_str());
+        }
+        return( ret );
+    }
 }
 
 bool Parser::hasInputSceneFilePath( void ){
-	bool ret = true;
-	if( myInputSceneFile == "" ){
-		ret = false;
-	}
-	return( ret );
+    bool ret = true;
+    if( myInputSceneFile == "" ){
+        ret = false;
+    }
+    return( ret );
 }
 
 bool Parser::hasOutputFilePath( void ){
-	bool ret = true;
-	if( myOutputFile == "" ){
-		ret = false;
-	}
-	return( ret );
+    bool ret = true;
+    if( myOutputFile == "" ){
+        ret = false;
+    }
+    return( ret );
 }
 
 bool Parser::hasDepthFilePath( void ){
-	bool ret = true;
-	if( myDepthFile == "" ){
-		ret = false;
-	}
-	return( ret );
+    bool ret = true;
+    if( myDepthFile == "" ){
+        ret = false;
+    }
+    return( ret );
 }
 
 
 void Parser::setInputSceneFile( string file ){
-	myInputSceneFile = file;
+    myInputSceneFile = file;
 }
 
 void Parser::setOutputFile( string file ){
-	myOutputFile = file;
+    myOutputFile = file;
 }
 
 void Parser::setDepthFile( string file ){
-	myDepthFile = file;
+    myDepthFile = file;
 }
 
 float Parser::parseFloat( ){
-	float ret = (float)atof( currentToken );
-	return( ret );
+    float ret = (float)atof( currentToken );
+    return( ret );
 }
 
 double Parser::parseDouble( ){
-	double ret = (double)atof( currentToken );
-	return( ret );
+    double ret = (double)atof( currentToken );
+    return( ret );
 }
 
 int Parser::parseInt( ){
-	int ret = atoi( currentToken );
-	return( ret );
+    int ret = atoi( currentToken );
+    return( ret );
 }
 
 string Parser::parseString( ){
@@ -110,24 +137,24 @@ bool Parser::compareToken( const char *str ){
 }
 
 void Parser::checkToken( const char *str, const char *stage  ){
-	if( strcmp( currentToken, str ) != 0 ){
-		cerr << stage << " parse error at line " << lineNumber << " token " << tokenCount << ": " << currentToken << endl;
-		cerr << "Current line: " << currentLine << endl;
-		cerr << "Expected \'" << str << "\'" << endl;
-		exit( 1 );
-	}
+    if( strcmp( currentToken, str ) != 0 ){
+        cerr << stage << " parse error at line " << lineNumber << " token " << tokenCount << ": " << currentToken << endl;
+        cerr << "Current line: " << currentLine << endl;
+        cerr << "Expected \'" << str << "\'" << endl;
+        exit( 1 );
+    }
 }
 
 void Parser::parseCamera( ){
-	float vec[3];
-	nextToken( );
-	bool fPerspective = false;
+    float vec[3];
+    nextToken( );
+    bool fPerspective = false;
     bool fSimplePerspective = false;
     bool fOrthographic = false;
-	Vector3D center, direction, up;
-	float distance, angle;
+    Vector3D center, direction, up;
+    float distance, angle;
 
-	if(compareToken( "OrthographicCamera"))
+    if(compareToken( "OrthographicCamera"))
     {
         fOrthographic = true;
     }
@@ -135,7 +162,7 @@ void Parser::parseCamera( ){
     {
         fSimplePerspective = true;
     }
-	else if(compareToken("PerspectiveCamera"))
+    else if(compareToken("PerspectiveCamera"))
     {
         fPerspective = true;
     }
@@ -143,82 +170,82 @@ void Parser::parseCamera( ){
     {
         checkToken("OrthographicCamera", "Camera");
     }
-	nextToken( );
-	checkToken( "{", "Camera" );
-	nextToken( );
-	checkToken( "center", "Camera" );
-	for( int i = 0; i < 3; i++ ){
-		nextToken( );
-		vec[i] = parseFloat( );
-	}
-    
-	center = Vector3D(vec[0],vec[1],vec[2]);
+    nextToken( );
+    checkToken( "{", "Camera" );
+    nextToken( );
+    checkToken( "center", "Camera" );
+    for( int i = 0; i < 3; i++ ){
+        nextToken( );
+        vec[i] = parseFloat( );
+    }
 
-	nextToken( );
-	checkToken( "direction", "Camera" );
-	for( int i = 0; i < 3; i++ ){
-		nextToken( );
-		vec[i] = parseFloat( );
-	}
-    
-	direction = Vector3D(vec[0],vec[1],vec[2]);
-	direction.Normalize();
+    center = Vector3D(vec[0],vec[1],vec[2]);
 
-	nextToken( );
-	checkToken( "up", "Camera" );
-	for( int i = 0; i < 3; i++ ){
-		nextToken( );
-		vec[i] = parseFloat( );
-	}
-    
-	up = Vector3D(vec[0],vec[1],vec[2]);
-	up.Normalize();
+    nextToken( );
+    checkToken( "direction", "Camera" );
+    for( int i = 0; i < 3; i++ ){
+        nextToken( );
+        vec[i] = parseFloat( );
+    }
 
-	nextToken( );
-    
-	if(fOrthographic)
-	{
-		myScene.SceneCamera =  new OrthographicCamera(center,direction,up);
-	}
-	else if(fSimplePerspective)
+    direction = Vector3D(vec[0],vec[1],vec[2]);
+    direction.Normalize();
+
+    nextToken( );
+    checkToken( "up", "Camera" );
+    for( int i = 0; i < 3; i++ ){
+        nextToken( );
+        vec[i] = parseFloat( );
+    }
+
+    up = Vector3D(vec[0],vec[1],vec[2]);
+    up.Normalize();
+
+    nextToken( );
+
+    if(fOrthographic)
+    {
+        myScene.SceneCamera =  new OrthographicCamera(center,direction,up);
+    }
+    else if(fSimplePerspective)
     {
         checkToken( "distance", "Camera");
         nextToken( );
         vec[0] = parseFloat( );
         distance = vec[0];
         nextToken( );
-		myScene.SceneCamera = new SimplePerspectiveCamera(center,direction,up,distance);
+        myScene.SceneCamera = new SimplePerspectiveCamera(center,direction,up,distance);
     }
-	else if (fPerspective)
-	{
-		checkToken( "angle", "Camera");
+    else if (fPerspective)
+    {
+        checkToken( "angle", "Camera");
         nextToken( );
         vec[0] = parseFloat( );
         angle = vec[0];
         nextToken( );
-		myScene.SceneCamera = &(PerspectiveCamera(center,direction,up,angle));
-	}
-	checkToken( "}", "Camera" );
+        myScene.SceneCamera = &(PerspectiveCamera(center,direction,up,angle));
+    }
+    checkToken( "}", "Camera" );
 }
 
 void Parser::parseBackground( ){	
-	float vec[3];
-	
-	nextToken( );
-	checkToken( "Background", "Background" );
-	nextToken( );
-	checkToken( "{", "Camera" );
-	
-	nextToken( );
-	checkToken( "color", "Background" );
-	for( int i = 0; i < 3; i++ ){
-		nextToken( );
-		vec[i] = parseFloat( );
-	}
-    	
-	myScene.BackgroundColor = Color(vec[0],vec[1],vec[2]);
-	nextToken( );
-	checkToken( "}", "Background" );
+    float vec[3];
+
+    nextToken( );
+    checkToken( "Background", "Background" );
+    nextToken( );
+    checkToken( "{", "Camera" );
+
+    nextToken( );
+    checkToken( "color", "Background" );
+    for( int i = 0; i < 3; i++ ){
+        nextToken( );
+        vec[i] = parseFloat( );
+    }
+
+    myScene.BackgroundColor = Color(vec[0],vec[1],vec[2]);
+    nextToken( );
+    checkToken( "}", "Background" );
 }
 
 void Parser::parseMaterials( ){
@@ -233,7 +260,7 @@ void Parser::parseMaterials( ){
     for(int i = 0; i < myNumberOfMaterials; i++)
     {
         Color diffuseColor = Color(),specColor = Color(),transColor = Color(),reflColor = Color();		
-		float exponent=0, refIndex=0;
+        float exponent=0, refIndex=0;
         float vec[3];
         nextToken();
         checkToken( "PhongMaterial", "Materials" );
@@ -293,7 +320,7 @@ void Parser::parseMaterials( ){
             nextToken();
             refIndex = vec[0];
         }
-		PhongMaterial * newMaterial = new PhongMaterial(diffuseColor, specColor, exponent,transColor,reflColor,refIndex);
+        PhongMaterial * newMaterial = new PhongMaterial(diffuseColor, specColor, exponent,transColor,reflColor,refIndex);
         myMaterials.push_back(newMaterial);
         checkToken( "}", "Materials"); 
     }
@@ -303,7 +330,7 @@ void Parser::parseMaterials( ){
 
 void Parser::parseGroup( ){	
     int numObjects;
-	int gCurrentMaterial;
+    int gCurrentMaterial;
 
     nextToken();
     checkToken( "Group", "Group");
@@ -343,17 +370,62 @@ void Parser::parseGroup( ){
         {
             checkToken("OBJECT3D","Group");
         }
-        
+
         nextToken();
     }
     checkToken("}", "Group");
+}
+
+void Parser::parseTransformations( ){	
+    int numObjects;
+    int gCurrentObject;
+
+    nextToken();
+    checkToken( "Transformations", "Transformations");
+    nextToken();
+    checkToken( "{", "Transformations");
+    nextToken();
+    checkToken( "numObjects", "Transformations");
+    nextToken();
+    numObjects = parseInt();
+    nextToken();
+    for(int i = 0; i < numObjects; i++)
+    {
+        if(compareToken("ObjectIndex"))
+        {
+            checkToken("ObjectIndex", "Transformations");
+            nextToken();
+            gCurrentObject = parseInt();
+            nextToken();
+        }
+        if(compareToken("Translation"))
+        {
+            parseTranslation(gCurrentObject );
+        }
+        else if(compareToken("BezeirTranslation"))
+        {
+            parseBezeirTranslation(gCurrentObject );
+        }
+        else if(compareToken("Rotation"))
+        {
+            parseRotation(gCurrentObject );
+        }
+        else if(compareToken("Scaling"))
+        {
+            parseScaling(gCurrentObject );
+        }
+
+
+        nextToken();
+    }
+    checkToken("}", "Transformations");
 }
 
 void Parser::parsePlane(int materialIndex )
 {
     float vec[3];
     float distance;
-	Vector3D normal;
+    Vector3D normal;
     checkToken("Plane", "Plane");
     nextToken();
     checkToken( "{", "Plane");
@@ -365,23 +437,23 @@ void Parser::parsePlane(int materialIndex )
         vec[i] = parseFloat();
         nextToken();
     }
-	normal = Vector3D(vec[0],vec[1],vec[2]);
-	normal.Normalize();
+    normal = Vector3D(vec[0],vec[1],vec[2]);
+    normal.Normalize();
     checkToken("offset", "Plane");
     nextToken();
     distance = parseFloat();
     nextToken();
     checkToken("}", "Plane");
 
-	Plane * p = new Plane(distance, normal);
-	p->Material = myMaterials[materialIndex];
-	myGroup.push_back(p);
+    Plane * p = new Plane(distance, normal);
+    p->Material = myMaterials[materialIndex];
+    myGroup.push_back(p);
 }
 
 void Parser::parseTriangle(int materialIndex )
 {
     float vec[3][3];
-	Vector3D p1,p2,p3;
+    Vector3D p1,p2,p3;
 
     checkToken("Triangle", "Triangle");
     nextToken();
@@ -394,7 +466,7 @@ void Parser::parseTriangle(int materialIndex )
         vec[0][i] = parseFloat();
         nextToken();
     }	
-	p1 = Vector3D(vec[0][0],vec[0][1],vec[0][2]);
+    p1 = Vector3D(vec[0][0],vec[0][1],vec[0][2]);
 
     checkToken("vertex1", "Triangle");
     nextToken();
@@ -403,7 +475,7 @@ void Parser::parseTriangle(int materialIndex )
         vec[1][i] = parseFloat();
         nextToken();
     }
-	p2 = Vector3D(vec[1][0],vec[1][1],vec[1][2]);
+    p2 = Vector3D(vec[1][0],vec[1][1],vec[1][2]);
 
     checkToken("vertex2", "Triangle");
     nextToken();
@@ -412,14 +484,14 @@ void Parser::parseTriangle(int materialIndex )
         vec[2][i] = parseFloat();
         nextToken();
     }
-	p3 = Vector3D(vec[2][0],vec[2][1],vec[2][2]);
+    p3 = Vector3D(vec[2][0],vec[2][1],vec[2][2]);
 
     checkToken("}", "Triangle");
-	
-	Triangle *t = new Triangle(p1,p2,p3);
-	t->Material = myMaterials[materialIndex];
 
-	myGroup.push_back(t);
+    Triangle *t = new Triangle(p1,p2,p3);
+    t->Material = myMaterials[materialIndex];
+
+    myGroup.push_back(t);
 }
 
 void Parser::parseSphere(int materialIndex ){
@@ -442,8 +514,8 @@ void Parser::parseSphere(int materialIndex ){
     nextToken();
     checkToken( "}", "Sphere");
 
-	Sphere * s = new Sphere(Vector3D(vec[0],vec[1],vec[2]), radius);
-	s->Material = myMaterials[materialIndex];
+    Sphere * s = new Sphere(Vector3D(vec[0],vec[1],vec[2]), radius);
+    s->Material = myMaterials[materialIndex];
 
     myGroup.push_back(s);
 }
@@ -451,7 +523,7 @@ void Parser::parseSphere(int materialIndex ){
 void Parser::parseModel(int materialIndex ){
     string var;
     FaceList * myFacelist;
-    
+
     checkToken("TriangleMesh", "Mesh");
     nextToken();
     checkToken("{", "Mesh");
@@ -463,18 +535,18 @@ void Parser::parseModel(int materialIndex ){
     checkToken("}","Mesh");
 
     myFacelist = readPlyModel(var.c_str());
-    
+
     TriangleMesh * myModel = new TriangleMesh(*myFacelist);	
     myModel->Material = myMaterials[materialIndex];
 
-	myGroup.push_back(myModel);
-    
+    myGroup.push_back(myModel);
+
     //delete myFacelist;
 }
 
 void Parser::parseViewPlane( ){
-	// You will need to adjust this so that the result 
-	// from parseFloat is stored somewhere meaningful.
+    // You will need to adjust this so that the result 
+    // from parseFloat is stored somewhere meaningful.
     float var;
     nextToken();
     checkToken("ViewPlane", "ViewPlane");
@@ -484,20 +556,20 @@ void Parser::parseViewPlane( ){
     checkToken( "width", "ViewPlane");
     nextToken();
     var = parseFloat();
-	myScene.SizeX = var;    
+    myScene.SizeX = var;    
     nextToken();
 
     checkToken( "height", "ViewPlane");
     nextToken();
     var = parseFloat();
-	myScene.SizeY = var;
+    myScene.SizeY = var;
 
     nextToken();
     checkToken( "pixelsize", "ViewPlane");
     nextToken();
     var = parseFloat();
-	myScene.PixelSize = var;
-    
+    myScene.PixelSize = var;
+
     nextToken();
     checkToken("}", "ViewPlane");    
 }
@@ -516,22 +588,22 @@ void Parser::parseLights( )
 
     for(int i = 0; i < numLights; i++)
     {
-		nextToken();
-		if (compareToken("PointLight"))
-			parsePointLight();
-		else 
-			parseDirectionalLight();
+        nextToken();
+        if (compareToken("PointLight"))
+            parsePointLight();
+        else 
+            parseDirectionalLight();
     }
     nextToken();
     checkToken("}","Lights");
 }
-    
+
 void Parser::parsePointLight()
 {
     float pos[3];
     float col[3];
     float att[3];   
-	Vector3D position;
+    Vector3D position;
 
     checkToken("PointLight", "Light");
     nextToken();
@@ -543,8 +615,8 @@ void Parser::parsePointLight()
         nextToken();
         pos[i] = parseFloat();
     }
-	position = Vector3D(pos[0],pos[1],pos[2]);
-	
+    position = Vector3D(pos[0],pos[1],pos[2]);
+
     nextToken();
     checkToken("color","Light");
     for(int i = 0; i < 3; i++)
@@ -570,13 +642,145 @@ void Parser::parsePointLight()
     checkToken("}","Light");
 };
 
+void Parser::parseTranslation(int objectIndex)
+{
+    float vec[3];
+
+    checkToken("Translation", "Translation");
+    nextToken();
+    checkToken( "{", "Translation");
+    nextToken();    
+    for(int j = 0; j < 3; j++)
+    {
+        vec[j] = parseFloat();
+        nextToken();
+    }    
+
+    checkToken( "}", "Translation");
+
+    TranslationMatrix * tm = new TranslationMatrix(vec[0],vec[1],vec[2]);
+    myGroup[objectIndex]->Transformations.push_back(tm);
+}
+
+void Parser::parseBezeirTranslation(int objectIndex)
+{
+    float vec[3];
+    Vector3D P1, P2, P3;
+    checkToken("BezeirTranslation", "BezeirTranslation");
+    nextToken();
+    checkToken( "{", "BezeirTranslation");
+    nextToken();
+
+    checkToken( "ControlPoint1", "BezeirTranslation");
+    nextToken();
+    for(int j = 0; j < 3; j++)
+    {
+        vec[j] = parseFloat();
+        nextToken();
+    }
+    P1 = Vector3D(vec[0],vec[1],vec[2]);
+
+    checkToken( "ControlPoint2", "BezeirTranslation");
+    nextToken();
+    for(int j = 0; j < 3; j++)
+    {
+        vec[j] = parseFloat();
+        nextToken();
+    }
+    P2 = Vector3D(vec[0],vec[1],vec[2]);
+
+    checkToken( "EndPoint", "BezeirTranslation");
+    nextToken();
+    for(int j = 0; j < 3; j++)
+    {
+        vec[j] = parseFloat();
+        nextToken();
+    }
+    P3 = Vector3D(vec[0],vec[1],vec[2]);
+
+    checkToken( "}", "BezeirTranslation");
+    BezierTranslationMatrix * bm = new BezierTranslationMatrix(P1, P2, P3);
+    myGroup[objectIndex]->Transformations.push_back(bm);
+}
+
+void Parser::parseRotation(int objectIndex)
+{
+    float vec[3], theta;
+    Vector3D axis, refP;
+
+    checkToken("Rotation", "Rotation");
+    nextToken();
+    checkToken( "{", "Rotation");
+    nextToken();
+
+    checkToken( "Theta", "Rotation");
+    nextToken();    
+    theta = parseFloat();
+    nextToken();        
+
+    checkToken( "Axis", "Rotation");
+    nextToken();
+    for(int j = 0; j < 3; j++)
+    {
+        vec[j] = parseFloat();
+        nextToken();
+    }
+    axis = Vector3D(vec[0],vec[1],vec[2]);
+
+    checkToken( "RotationPoint", "Rotation");
+    nextToken();
+    for(int j = 0; j < 3; j++)
+    {
+        vec[j] = parseFloat();
+        nextToken();
+    }
+    refP = Vector3D(vec[0],vec[1],vec[2]);
+
+    checkToken( "}", "Rotation");
+    RotationMatrix * rm = new RotationMatrix(theta, axis, refP);
+    myGroup[objectIndex]->Transformations.push_back(rm);
+}
+
+void Parser::parseScaling(int objectIndex)
+{
+    float vec[3], dx, dy, dz;
+
+    checkToken("Scaling", "Scaling");
+    nextToken();
+    checkToken( "{", "Scaling");
+    nextToken(); 
+    checkToken( "Scale", "Scaling");
+    nextToken();
+    for(int j = 0; j < 3; j++)
+    {
+        vec[j] = parseFloat();
+        nextToken();
+    }    
+    dx = vec[0];
+    dy = vec[1];
+    dz = vec[2];
+
+    checkToken( "ReferencePoint", "Scaling");
+    nextToken();
+    for(int j = 0; j < 3; j++)
+    {
+        vec[j] = parseFloat();
+        nextToken();
+    }
+
+    checkToken( "}", "Scaling");
+
+    ScalingMatrix * sm = new ScalingMatrix(dx,dy,dz,Vector3D(vec[0],vec[1],vec[2]));
+    myGroup[objectIndex]->Transformations.push_back(sm);
+}
+
 void Parser::parseDirectionalLight()
 {
     float pos[3];
-	float dir[3];
+    float dir[3];
     float col[3];
     float att[3];
-	Vector3D position, direction;
+    Vector3D position, direction;
 
     checkToken("DirectionalLight", "Light");
     nextToken();
@@ -588,17 +792,17 @@ void Parser::parseDirectionalLight()
         nextToken();
         pos[i] = parseFloat();
     }
-	position = Vector3D(pos[0],pos[1],pos[2]);
-	nextToken();
+    position = Vector3D(pos[0],pos[1],pos[2]);
+    nextToken();
 
-	checkToken("direction","Light");
+    checkToken("direction","Light");
     for(int i = 0; i < 3; i++)
     {
         nextToken();
         dir[i] = parseFloat();
     }
-	direction = Vector3D(dir[0],dir[1],dir[2]);
-	direction.Normalize();
+    direction = Vector3D(dir[0],dir[1],dir[2]);
+    direction.Normalize();
     nextToken();
 
     checkToken("color","Light");
@@ -626,63 +830,63 @@ void Parser::parseDirectionalLight()
 };
 
 bool Parser::areMoreTokens( ){
-	bool ret = false;
-	if( j < length ){
-		ret = true;
-	}
-	return( ret );
+    bool ret = false;
+    if( j < length ){
+        ret = true;
+    }
+    return( ret );
 }
 
 void Parser::advance( ){
-	if( currentLine[j] == ' ' || currentLine[j] == '\t' || currentLine[j] == '\n' ){
-		while( currentLine[j] == ' ' || currentLine[j] == '\t' || currentLine[j] == '\n' ){
-			j++;
-		}
-		i = j;
-	}
+    if( currentLine[j] == ' ' || currentLine[j] == '\t' || currentLine[j] == '\n' ){
+        while( currentLine[j] == ' ' || currentLine[j] == '\t' || currentLine[j] == '\n' ){
+            j++;
+        }
+        i = j;
+    }
 }
 
 void Parser::nextOnLine( ){
-	//advance( );
-	while( currentLine[j] != ' ' && currentLine[j] != '\t' && currentLine[j] != '\n' && currentLine[j] != 0 ){
-		j++;
-	}
-	//cout << "ending: " << i <<  ", " << j << endl;
-	currentLine[j] = 0;
-	int tmp = i;
-	if( i != j ){
-		while( i <= j ){
-			currentToken[i - tmp] = currentLine[i];
-			//cout << "copying: " << (i - tmp) <<  ", " << i << endl;
-			i++;
-		}
-		//cerr << lineNumber << ": " << ++tokenCount << ": '" << currentToken << "'" << endl;
-	}
-	j++;
-	i = j;
+    //advance( );
+    while( currentLine[j] != ' ' && currentLine[j] != '\t' && currentLine[j] != '\n' && currentLine[j] != 0 ){
+        j++;
+    }
+    //cout << "ending: " << i <<  ", " << j << endl;
+    currentLine[j] = 0;
+    int tmp = i;
+    if( i != j ){
+        while( i <= j ){
+            currentToken[i - tmp] = currentLine[i];
+            //cout << "copying: " << (i - tmp) <<  ", " << i << endl;
+            i++;
+        }
+        //cerr << lineNumber << ": " << ++tokenCount << ": '" << currentToken << "'" << endl;
+    }
+    j++;
+    i = j;
 }
 
 void Parser::nextToken( ){
-	if( !inputFileStream.eof( ) ){
-		advance( );
-		if( areMoreTokens( ) ){
-			nextOnLine( );
-		}else{
-			do{
-				inputFileStream.getline( currentLine, sizeof(currentLine) );
-				lineNumber++;
-				length = strlen( currentLine );
-				//cerr << "new line of length: " << length << endl;
-			}while( length <= 0 );
-			i = 0;
-			j = 0;
-			advance( );
-			//cerr << "Line: " << currentLine << endl;
-			if( areMoreTokens( ) ){
-				nextOnLine( );
-			}
-		}
-	}
+    if( !inputFileStream.eof( ) ){
+        advance( );
+        if( areMoreTokens( ) ){
+            nextOnLine( );
+        }else{
+            do{
+                inputFileStream.getline( currentLine, sizeof(currentLine) );
+                lineNumber++;
+                length = strlen( currentLine );
+                //cerr << "new line of length: " << length << endl;
+            }while( length <= 0 );
+            i = 0;
+            j = 0;
+            advance( );
+            //cerr << "Line: " << currentLine << endl;
+            if( areMoreTokens( ) ){
+                nextOnLine( );
+            }
+        }
+    }
 }
 
 

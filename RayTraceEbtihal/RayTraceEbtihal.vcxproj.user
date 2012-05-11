@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LocalDebuggerCommandArguments>-i c:\scene\scene1.txt -o c:\scene\output.png -d c:\scene\depth.png</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>-a -i c:\scene\scene3.txt -o c:\scene\output.png -d c:\scene\depth.png -t 2 -f 10</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

@@ -34,13 +34,19 @@
 #include "Material.h"
 #include "PhongMaterial.h"
 
+#include "TransformationMatrix.h"
+#include "TranslationMatrix.h"
+#include "BezierTranslationMatrix.h"
+#include "RotationMatrix.h"
+#include "ScalingMatrix.h"
+
 #include "PlyModel.h"
 
 using namespace std;
 
 class Parser{
 	public:
-		Parser( string inputFilename = "", string outputFilename = "", string depthFilename = "" );
+		Parser( string inputFilename = "", string outputFilename = "", string depthFilename = "", bool animate = false, float timeframe=0, int fps=0 );
 		
 		string& inputSceneFile( );
 		string& outputFile( );
@@ -55,8 +61,11 @@ class Parser{
 		bool hasInputSceneFilePath( );
 		bool hasOutputFilePath( );
 		bool hasDepthFilePath( );
-
+        bool animated;
+        float timeFrame;
+        int FPS;
 		bool parse( );
+
 				
 	private:				
 		
@@ -67,6 +76,7 @@ class Parser{
 		vector<Primitive*> myGroup;
 		vector<Material*> myMaterials;
 		vector<Light*> myLights;
+        
 		// For parsing
 		char currentLine[255];
 		char currentToken[255];
@@ -90,6 +100,7 @@ class Parser{
 		string parseString( );
 		void parseMaterials( );
 		void parseGroup( );
+        void parseTransformations( );
 		void parseSphere(int materialIndex);
 		void parsePlane(int materialIndex);
 		void parseTriangle(int materialIndex);
@@ -97,6 +108,11 @@ class Parser{
 		void parseLights();
 		void parsePointLight();
 		void parseDirectionalLight();
+        void parseTranslation(int objectIndex);
+        void parseBezeirTranslation(int objectIndex);
+        void parseRotation(int objectIndex);
+        void parseScaling(int objectIndex);
+
 		bool compareToken( const char *str );
 };
 
