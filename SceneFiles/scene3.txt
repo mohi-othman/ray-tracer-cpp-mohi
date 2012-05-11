@@ -1,0 +1,56 @@
+SimplePerspectiveCamera {
+    center 0 0 -10 
+    direction 0 0 1  
+    up 0 1 0
+	distance 5 }
+ViewPlane { width 300.0 height 200.0 pixelsize 0.03 }
+Lights { numLights 2 
+		DirectionalLight { position 0 10 10 
+							direction 0 0 1
+							color .3 .3 .3 
+							attenuation 1.0 0.5 0.5  } 
+		PointLight 		 { position 0 10 -2 
+							color 1 1 1 
+							attenuation 1.0 0.5 0.5  } 
+		}
+Background { color 0 0 0 }
+
+Materials {
+    numMaterials 3
+    PhongMaterial {
+		diffuseColor .2 .3 .8 specularColor 0.7 0.7 1 exponent 32 reflexitiveColor 0.8 0.8 0.8  
+		}  
+	PhongMaterial {
+		diffuseColor .8 .3 .1 specularColor 1 0.7 0.5 exponent 32 reflexitiveColor 0.8 0.8 0.8  
+		}  
+	PhongMaterial {
+		diffuseColor .7 .7 0 specularColor 1 0.7 0.5 exponent 32 reflexitiveColor 0.8 0.8 0.8  
+		}  
+}
+
+Group {
+    numObjects 3    
+	MaterialIndex 0
+	Sphere { center -16 0 15 radius .75 }  
+	MaterialIndex 1
+	TriangleMesh { ply_file c:\models\icosahedron.ply }  
+	MaterialIndex 2
+	Plane {
+		normal 0 1 0
+		offset 10
+		}
+}
+Transformations {
+	numObjects 3
+	ObjectIndex 0
+	BezierTranslation { ControlPoint1 5 15 -2 ControlPoint2 15 -15 1.7 EndPoint 22 0 -10
+	}
+	ObjectIndex 0
+	Scaling { 
+		Scale 3 3 3 ReferencePoint -16 0 15
+		}
+	ObjectIndex 1
+	Rotation { 
+		Theta 9 Axis 0 1 -.2 RotationPoint 0 0 -6
+		}
+}

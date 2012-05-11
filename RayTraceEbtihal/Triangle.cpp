@@ -27,7 +27,7 @@ Collision Triangle::Intersection(Ray ray)
     w0 = ray.Origin - Point0;
     a = -(_normal * w0);
     b = _normal * dir;
-    if (fabs(b) < EPSILON)
+    if (fabs(b) < 0)
     {     // ray is parallel to triangle plane
         return Collision(false);
     }
@@ -61,7 +61,7 @@ Collision Triangle::Intersection(Ray ray)
     if (t < 0.0 || (s + t) > 1.0)  // I is outside T
         return Collision(false);
 
-    float dist = Length(ray.Origin, hitPoint);
+    float dist = ray.Origin.Distance(hitPoint);
 
     return Collision(true, false, this, dist, _normal, hitPoint);                     // I is in T
 }

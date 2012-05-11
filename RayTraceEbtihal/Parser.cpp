@@ -402,7 +402,7 @@ void Parser::parseTransformations( ){
         {
             parseTranslation(gCurrentObject );
         }
-        else if(compareToken("BezeirTranslation"))
+        else if(compareToken("BezierTranslation"))
         {
             parseBezeirTranslation(gCurrentObject );
         }
@@ -666,12 +666,12 @@ void Parser::parseBezeirTranslation(int objectIndex)
 {
     float vec[3];
     Vector3D P1, P2, P3;
-    checkToken("BezeirTranslation", "BezeirTranslation");
+    checkToken("BezierTranslation", "BezierTranslation");
     nextToken();
     checkToken( "{", "BezeirTranslation");
     nextToken();
 
-    checkToken( "ControlPoint1", "BezeirTranslation");
+    checkToken( "ControlPoint1", "BezierTranslation");
     nextToken();
     for(int j = 0; j < 3; j++)
     {
@@ -680,7 +680,7 @@ void Parser::parseBezeirTranslation(int objectIndex)
     }
     P1 = Vector3D(vec[0],vec[1],vec[2]);
 
-    checkToken( "ControlPoint2", "BezeirTranslation");
+    checkToken( "ControlPoint2", "BezierTranslation");
     nextToken();
     for(int j = 0; j < 3; j++)
     {
@@ -689,7 +689,7 @@ void Parser::parseBezeirTranslation(int objectIndex)
     }
     P2 = Vector3D(vec[0],vec[1],vec[2]);
 
-    checkToken( "EndPoint", "BezeirTranslation");
+    checkToken( "EndPoint", "BezierTranslation");
     nextToken();
     for(int j = 0; j < 3; j++)
     {
@@ -698,7 +698,7 @@ void Parser::parseBezeirTranslation(int objectIndex)
     }
     P3 = Vector3D(vec[0],vec[1],vec[2]);
 
-    checkToken( "}", "BezeirTranslation");
+    checkToken( "}", "BezierTranslation");
     BezierTranslationMatrix * bm = new BezierTranslationMatrix(P1, P2, P3);
     myGroup[objectIndex]->Transformations.push_back(bm);
 }
