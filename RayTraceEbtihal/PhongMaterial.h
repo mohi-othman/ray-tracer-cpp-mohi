@@ -1,6 +1,7 @@
 //Class for Phong material, dervied from base Material class
 
-#ifndef PhongMaterial_H
+#ifndef PHONGMATERIAL_H
+#define PHONGMATERIAL_H
 
 #include "Material.h"
 

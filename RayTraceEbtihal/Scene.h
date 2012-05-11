@@ -24,16 +24,22 @@ public:
 	std::vector <Light*> SceneLights;		//List of all light sources in the scene
 	Shader* SceneShader;					//Shader used to shade the scene
 	Color BackgroundColor;					//Background color of the scene
+	float TransformationScalingFactor;		//Scaling factor for transformations. 0=none 1=complete
 
 	//Constructor
 	Scene() {};
 	Scene(int sizeX, int sizeY, float pixelSize, Camera* sceneCamera, Color ambientLight, std::vector<Primitive*> sceneObjects, std::vector<Light*> sceneLights, Shader* sceneShader, Color backgroundColor):
-		SizeX(sizeX), SizeY(sizeY), PixelSize(pixelSize), SceneCamera(sceneCamera), AmbientLight(ambientLight), SceneObjects(sceneObjects), SceneLights(sceneLights), SceneShader(sceneShader), BackgroundColor(backgroundColor){};
+		SizeX(sizeX), SizeY(sizeY), PixelSize(pixelSize), SceneCamera(sceneCamera), AmbientLight(ambientLight), SceneObjects(sceneObjects), SceneLights(sceneLights), SceneShader(sceneShader), BackgroundColor(backgroundColor){
+			TransformationScalingFactor = 1;
+		};
 	~Scene()
 	{
 	}
 	//Renders the scene to a view object.
 	View Render();	
+
+	//Animates the scene
+	std::vector<View> Animate(float timeFrame, int fps);
 
 	//Main ray tracing function
 	Point RayTrace(Ray ray, float refractionIndex, int level);	

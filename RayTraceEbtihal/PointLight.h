@@ -12,6 +12,7 @@ class PointLight :
 public:
 	PointLight(Vector3D location, Color color, Vector3D attenuation);
 	Vector3D GetLightDirection(Vector3D targetPoint);
+	float GetDistance(Vector3D targetPoint);
 };
 
 #endif

@@ -10,8 +10,8 @@ Triangle::Triangle(Vector3D point0, Vector3D point1, Vector3D point2)
     // pre-calculate triangle edge vectors and plane normal            
     _u = Point1 - Point0;
     _v = Point2 - Point0;
-    _normal = (_u^_v);   
-    //_normal = (_v^_u);
+    //_normal = (_u^_v);   
+    _normal = (_v^_u);
 	_normal.Normalize();
 }
 

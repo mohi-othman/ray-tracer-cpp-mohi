@@ -90,6 +90,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BezierTranslationMatrix.cpp" />
     <ClCompile Include="BoundingBox.cpp" />
     <ClCompile Include="DiffuseShader.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
@@ -105,15 +106,21 @@
     <ClCompile Include="PNGBuilder.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="raytrace.cpp" />
+    <ClCompile Include="RotationMatrix.cpp" />
+    <ClCompile Include="ScalingMatrix.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SimplePerspectiveCamera.cpp" />
     <ClCompile Include="SpecularShader.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="TransformationMatrix.cpp" />
+    <ClCompile Include="TranslationMatrix.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="TriangleMesh.cpp" />
+    <ClCompile Include="Vector3DMatrix.cpp" />
     <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BezierTranslationMatrix.h" />
     <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collision.h" />
@@ -136,14 +143,19 @@
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Ray.h" />
+    <ClInclude Include="RotationMatrix.h" />
+    <ClInclude Include="ScalingMatrix.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SimplePerspectiveCamera.h" />
     <ClInclude Include="SpecularShader.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="TransformationMatrix.h" />
+    <ClInclude Include="TranslationMatrix.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="TriangleMesh.h" />
     <ClInclude Include="Vector3D.h" />
+    <ClInclude Include="Vector3DMatrix.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

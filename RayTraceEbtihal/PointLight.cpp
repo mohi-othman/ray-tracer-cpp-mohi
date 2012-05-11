@@ -15,5 +15,10 @@ Vector3D PointLight::GetLightDirection(Vector3D targetPoint)
 	return l;
 }
 
+float PointLight::GetDistance(Vector3D targetPoint)
+{
+	return targetPoint.Distance(Location);
+}
+
 
 

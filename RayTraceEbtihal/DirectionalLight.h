@@ -11,6 +11,7 @@ public:
 	Vector3D Direction;
 	DirectionalLight(Vector3D direction, Color color, Vector3D attenuation);
 	Vector3D GetLightDirection(Vector3D targetPoint);
+	float GetDistance(Vector3D targetPoint);
 };
 
 #endif

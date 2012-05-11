@@ -5,6 +5,8 @@
 
 #include "Vector3D.h"
 #include "Color.h"
+#include "Globals.h"
+
 class Light
 {
 public:
@@ -14,6 +16,8 @@ public:
 
 	//Gets the direction to the light source from the target point
 	virtual Vector3D GetLightDirection(Vector3D targetPoint)=0;
+
+	virtual float GetDistance(Vector3D targetPoint)=0;
 };
 
 #endif

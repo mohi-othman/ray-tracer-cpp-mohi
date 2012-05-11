@@ -15,7 +15,7 @@ public:
     Vector3D Up;
     float Distance;
 
-	SimplePerspectiveCamera(Vector3D cameraLocation, Vector3D direction, Vector3D up, double distance) : CameraLocation(cameraLocation), Direction(direction), Up(up), Distance(distance) {};
+	SimplePerspectiveCamera(Vector3D cameraLocation, Vector3D direction, Vector3D up, float distance) : CameraLocation(cameraLocation), Direction(direction), Up(up), Distance(distance) {};
 	Ray SimplePerspectiveCamera::GenerateRay(Vector3D target);	
 	View GetView(int width, int height, float pixelSize);
 	

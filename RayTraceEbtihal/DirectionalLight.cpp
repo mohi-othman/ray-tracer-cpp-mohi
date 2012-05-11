@@ -12,3 +12,8 @@ Vector3D DirectionalLight::GetLightDirection(Vector3D targetPoint)
 	//direction is reverse of the directional light direction
 	return -1*Direction;
 }
+
+float DirectionalLight::GetDistance(Vector3D targetPoint)
+{
+	return INFINITY;
+}
